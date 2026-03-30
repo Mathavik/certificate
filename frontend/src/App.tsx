@@ -31,7 +31,11 @@ const createPdfFromElement = async (element: HTMLElement) => {
   });
 
   const image = canvas.toDataURL('image/png');
-  const pdf = new jsPDF({ unit: 'px', format: [canvas.width, canvas.height] });
+  const pdf = new jsPDF({
+    orientation: 'landscape',
+    unit: 'px',
+    format: [canvas.width, canvas.height],
+  });
   pdf.addImage(image, 'PNG', 0, 0, canvas.width, canvas.height);
   return pdf;
 };
