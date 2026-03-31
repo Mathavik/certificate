@@ -4,8 +4,8 @@ API_PORT=5000
 
 DB_HOST=localhost
 DB_USER=root
-DB_PASSWORD=password
-DB_NAME=vehiclemanagement
+DB_PASSWORD=jesi44
+DB_NAME=certificate_db
 
 
 DB_PORT=3306
