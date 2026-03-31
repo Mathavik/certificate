@@ -1,5 +1,9 @@
 import React from 'react';
 import type { StudentRow } from './ExcelUpload';
+import { Document, Page, pdfjs } from 'react-pdf';
+
+// ✅ Worker setup (IMPORTANT)
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 type CertificateProps = {
   student: StudentRow | null;
@@ -7,52 +11,56 @@ type CertificateProps = {
   className?: string;
 };
 
-const Certificate: React.FC<CertificateProps> = ({ student, containerRef, className = '' }) => {
-  const backgroundUrl = `${process.env.PUBLIC_URL}/certificate1.png`;
+const Certificate: React.FC<CertificateProps> = ({
+  student,
+  containerRef,
+  className = ''
+}) => {
+
+  // ✅ simple path use pannunga
+  const pdfUrl = "/certificate1.pdf";
 
   return (
     <div
       ref={containerRef}
-      className={`relative w-[1120px] h-[793px] max-w-full overflow-hidden rounded-none border border-slate-200 bg-white ${className}`}
-      style={{ minWidth: 1120, minHeight: 793 }}
+      className={`relative w-[1120px] h-[793px] max-w-full overflow-hidden border border-slate-200 bg-white ${className}`}
     >
-      <img
-        src={backgroundUrl}
-        alt="Certificate background"
-        className="absolute inset-0 h-full w-full object-cover"
-        crossOrigin="anonymous"
-      />
 
-      <div className="absolute inset-0 flex items-center justify-center text-center">
-        {student ? (
-          <div
-            className="absolute"
+      {/* ✅ PDF Background */}
+      <Document
+        file={pdfUrl}
+        onLoadError={(error: any) => console.error("PDF load error:", error)}
+      >
+        <Page pageNumber={1} width={1120} />
+      </Document>
+
+      {/* ✅ Student Name Overlay */}
+      {student && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 395,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '840px',
+            textAlign: 'center',
+            pointerEvents: 'none' // click block aagatha
+          }}
+        >
+          <p
             style={{
-              top: 345,
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '840px'
+              fontSize: '26px',
+              fontWeight: 'bold',
+              color: '#0f172a',
+              fontFamily: "'Cormorant Upright', serif",
+              letterSpacing: '0.1em'
             }}
           >
-            <p
-              className="text-[1.6rem] font-bold leading-tight text-slate-950"
-              style={{
-                fontFamily: "'Cormorant Upright', serif",
-                letterSpacing: '0.1em'
-              }}
-            >
-              {student.name}
-            </p>
-          </div>
-        ) : (
-          <div className="rounded-none border border-dashed border-slate-300 bg-slate-50 px-8 py-10 text-center text-slate-600">
-            <p className="text-xl font-semibold">Certificate preview will appear here</p>
-            <p className="mt-2 text-sm">
-              Upload your Excel file and choose a student to preview the certificate.
-            </p>
-          </div>
-        )}
-      </div>
+            {student.name}
+          </p>
+        </div>
+      )}
+
     </div>
   );
 };
