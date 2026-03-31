@@ -8,7 +8,7 @@ type CertificateProps = {
 };
 
 const Certificate: React.FC<CertificateProps> = ({ student, containerRef, className = '' }) => {
-  const backgroundUrl = `${process.env.PUBLIC_URL}/certificate.jpeg`;
+  const backgroundUrl = `${process.env.PUBLIC_URL}/certificate.jpg`;
 
   return (
     <div
