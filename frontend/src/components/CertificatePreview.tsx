@@ -7,9 +7,14 @@ type CertificatePreviewProps = {
   previewRef: React.RefObject<HTMLDivElement>;
   selectedCollege: string;
   selectedCount: number;
+  plain?: boolean; // If true, render only the certificate (for export)
 };
 
-const CertificatePreview: React.FC<CertificatePreviewProps> = ({ student, previewRef, selectedCollege, selectedCount }) => {
+const CertificatePreview: React.FC<CertificatePreviewProps> = ({ student, previewRef, selectedCollege, selectedCount, plain }) => {
+  if (plain) {
+    // For export: no section, no padding, just the certificate
+    return <Certificate student={student} containerRef={previewRef} />;
+  }
   return (
     <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-lg">
       <div className="mb-5 flex items-center justify-between gap-4">

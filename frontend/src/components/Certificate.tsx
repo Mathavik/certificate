@@ -9,6 +9,7 @@ type CertificateProps = {
   student: StudentRow | null;
   containerRef?: React.RefObject<HTMLDivElement>;
   className?: string;
+  plain?: boolean; // For future use
 };
 
 // Certificate.tsx change panniye code:

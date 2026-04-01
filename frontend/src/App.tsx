@@ -295,7 +295,7 @@ const App: React.FC = () => {
             selectedCount={selectedRows.length}
           />
 
-          <div className="space-y-5">
+          {/* <div className="space-y-5">
             <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-lg">
               <h2 className="text-xl font-semibold text-slate-900">Status</h2>
               <p className="mt-3 text-sm text-slate-600">{statusMessage}</p>
@@ -313,7 +313,7 @@ const App: React.FC = () => {
                 <li>Download a single PDF or export the selected college as a ZIP.</li>
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -333,6 +333,7 @@ const App: React.FC = () => {
           previewRef={hiddenCertificateRef}
           selectedCollege={selectedCollege}
           selectedCount={selectedRows.length}
+          plain // Only the certificate, no padding/border
         />
       </div>
     </div>
