@@ -47,7 +47,7 @@ const Certificate: React.FC<CertificateProps> = ({
         <div
           style={{
             position: 'absolute',
-            top: '49.8%', // Percentage use panna accurate-ah irukkum
+            top: '48.9%', // Percentage use panna accurate-ah irukkum
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: '840px',
@@ -56,17 +56,18 @@ const Certificate: React.FC<CertificateProps> = ({
             zIndex: 10
           }}
         >
-          <p
-            style={{
-              fontSize: '26px',
-              fontWeight: 'bold',
-              color: '#0f172a',
-              fontFamily: "'Cormorant Upright', serif",
-              letterSpacing: '0.1em'
-            }}
-          >
-            {student.name}
-          </p>
+        <p
+  style={{
+    fontSize: '26px',
+    fontWeight: 'bold',
+    color: '#0f172a',
+    fontFamily: "'Cormorant Upright', serif",
+    letterSpacing: '0.1em',
+    textTransform: 'uppercase' // 👈 Intha line-ai add pannunga
+  }}
+>
+  {student.name}
+</p>
         </div>
       )}
     </div>
