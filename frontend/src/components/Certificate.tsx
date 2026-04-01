@@ -25,7 +25,7 @@ const Certificate: React.FC<CertificateProps> = ({
     <div
       ref={containerRef}
       // H-793px remove pannittu h-auto potta border correct-ah PDF-a suththi varum
-      className={`relative w-[1120px] h-auto max-w-full border border-slate-200 bg-white ${className}`}
+      className={`relative w-[1140px] h-[813px] max-w-full border border-slate-200 bg-white ${className}`}
       style={{ aspectRatio: '1120 / 792' }} // Aspect ratio maintain panna ithu helpful
     >
 
