@@ -34,9 +34,9 @@ const Certificate: React.FC<CertificateProps> = ({
         file={pdfUrl}
         onLoadError={(error: any) => console.error("PDF load error:", error)}
       >
-        <Page 
-          pageNumber={1} 
-          width={1120} 
+        <Page
+          pageNumber={1}
+          width={1120}
           renderAnnotationLayer={false} // Extra spacing avoid panna
           renderTextLayer={false}       // Extra spacing avoid panna
         />
@@ -47,7 +47,7 @@ const Certificate: React.FC<CertificateProps> = ({
         <div
           style={{
             position: 'absolute',
-            top: '48.9%', // Percentage use panna accurate-ah irukkum
+            top: '50%', // Percentage use panna accurate-ah irukkum
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: '840px',
@@ -56,18 +56,18 @@ const Certificate: React.FC<CertificateProps> = ({
             zIndex: 10
           }}
         >
-        <p
-  style={{
-    fontSize: '26px',
-    fontWeight: 'bold',
-    color: '#0f172a',
-    fontFamily: "'Cormorant Upright', serif",
-    letterSpacing: '0.1em',
-    textTransform: 'uppercase' // 👈 Intha line-ai add pannunga
-  }}
->
-  {student.name}
-</p>
+          <p
+            style={{
+              fontSize: '26px',
+              fontWeight: 'bold',
+              color: '#0f172a',
+              fontFamily: "'Cormorant Upright', serif",
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase' // 👈 Intha line-ai add pannunga
+            }}
+          >
+            {student.name}
+          </p>
         </div>
       )}
     </div>
