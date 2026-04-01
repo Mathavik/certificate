@@ -11,19 +11,22 @@ type CertificateProps = {
   className?: string;
 };
 
+// Certificate.tsx change panniye code:
+
 const Certificate: React.FC<CertificateProps> = ({
   student,
   containerRef,
   className = ''
 }) => {
 
-  // ✅ simple path use pannunga
   const pdfUrl = "/certificate1.pdf";
 
   return (
     <div
       ref={containerRef}
-      className={`relative w-[1120px] h-[793px] max-w-full overflow-hidden border border-slate-200 bg-white ${className}`}
+      // H-793px remove pannittu h-auto potta border correct-ah PDF-a suththi varum
+      className={`relative w-[1120px] h-auto max-w-full border border-slate-200 bg-white ${className}`}
+      style={{ aspectRatio: '1120 / 792' }} // Aspect ratio maintain panna ithu helpful
     >
 
       {/* ✅ PDF Background */}
@@ -31,7 +34,12 @@ const Certificate: React.FC<CertificateProps> = ({
         file={pdfUrl}
         onLoadError={(error: any) => console.error("PDF load error:", error)}
       >
-        <Page pageNumber={1} width={1120} />
+        <Page 
+          pageNumber={1} 
+          width={1120} 
+          renderAnnotationLayer={false} // Extra spacing avoid panna
+          renderTextLayer={false}       // Extra spacing avoid panna
+        />
       </Document>
 
       {/* ✅ Student Name Overlay */}
@@ -39,12 +47,13 @@ const Certificate: React.FC<CertificateProps> = ({
         <div
           style={{
             position: 'absolute',
-            top: 395,
+            top: '49.8%', // Percentage use panna accurate-ah irukkum
             left: '50%',
-            transform: 'translateX(-50%)',
+            transform: 'translate(-50%, -50%)',
             width: '840px',
             textAlign: 'center',
-            pointerEvents: 'none' // click block aagatha
+            pointerEvents: 'none',
+            zIndex: 10
           }}
         >
           <p
@@ -60,7 +69,6 @@ const Certificate: React.FC<CertificateProps> = ({
           </p>
         </div>
       )}
-
     </div>
   );
 };
