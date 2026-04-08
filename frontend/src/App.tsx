@@ -8,7 +8,6 @@ import CertificatePreview from './components/CertificatePreview';
 import CollegeDropdown from './components/CollegeDropdown';
 import DownloadButtons from './components/DownloadButtons';
 import ExcelUpload, { StudentRow } from './components/ExcelUpload';
-import './App.css';
 
 const apiBaseUrl = process.env.REACT_APP_API_URL ?? 'http://localhost:5000';
 
